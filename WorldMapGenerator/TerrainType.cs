@@ -16,3 +16,17 @@
  *		- Mountain
  *		- Snow
  */
+
+namespace WorldMapGenerator 
+{
+    public enum TerrainType
+    {
+        DeepOcean,
+        ShallowWater,
+        Beach,
+        Grassland,
+        Forest,
+        Mountain,
+        Snow
+    }
+}
