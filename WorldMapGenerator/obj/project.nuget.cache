@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "aBvmvR5j0/I=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\cheta\\Source\\Repos\\WorldMapGenerator\\WorldMapGenerator\\WorldMapGenerator.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\cheta\\.nuget\\packages\\skiasharp\\3.119.2\\skiasharp.3.119.2.nupkg.sha512",
+    "C:\\Users\\cheta\\.nuget\\packages\\skiasharp.nativeassets.macos\\3.119.2\\skiasharp.nativeassets.macos.3.119.2.nupkg.sha512",
+    "C:\\Users\\cheta\\.nuget\\packages\\skiasharp.nativeassets.win32\\3.119.2\\skiasharp.nativeassets.win32.3.119.2.nupkg.sha512"
+  ],
+  "logs": []
+}
