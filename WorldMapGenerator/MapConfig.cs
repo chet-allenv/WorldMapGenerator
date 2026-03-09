@@ -33,3 +33,17 @@
  *      - MountainMax (float)
  *      // Anything higher than MountainMax is considered Snow.
  */
+
+public record MapConfig
+{
+    public int Width = 1024;                                        // In pixels
+    public int Height = 1024;                                       // In pixels
+
+    public int Seed = 1337;                                         // Seed for noise generation
+
+    public float Frequency = 0.003f;                                // Frequency for noise generation
+    public int Octaves = 5;                                         // Number of octaves for noise generation
+
+    public float FalloffStrength = 1.8f;                            // Controls how quickly the terrain falls off towards the edges of the map
+    public string OutputFilePath = @"..\..\..\output\worldmap.png"; // Output file path for the generated map
+}
