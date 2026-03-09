@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WorldMapGenerator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+24e566fa78bf8c090e639b3da4d8f57f7f03ba96")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+70b8270fe3cf0a29cddfd3953c59dafbd920fe75")]
 [assembly: System.Reflection.AssemblyProductAttribute("WorldMapGenerator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WorldMapGenerator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
