@@ -20,3 +20,37 @@
  *      This method would analyze the height values from the WorldMap and adjust the brightness of each pixel accordingly to create a shaded effect that enhances the perception of terrain elevation.    
  *      
  */
+using SkiaSharp;
+
+namespace WorldMapGenerator
+{
+    public class MapRenderer
+    {
+        private readonly MapConfig _config;
+
+        public MapRenderer(MapConfig config)
+        {
+            _config = config;
+        }
+
+        /*
+         * Render Method:
+         * Method that takes a WorldMap and a ColorPalette, and generates an SKBitmap where each pixel's color is determined by the terrain type at that location on the WorldMap using the ColorPalette.
+         */
+        public SKBitmap Render(WorldMap map, ColorPalette palette)
+        {
+            var _bitmap = new SKBitmap(map.Width, map.Height);
+
+            for (int x = 0; x < map.Width; x++)
+            {
+                for (int y = 0; y < map.Height; y++)
+                {
+                    var terrainType = map.GetTerrainAt(x, y);
+                    var color = palette.GetColor(terrainType);
+                    _bitmap.SetPixel(x, y, color);
+                }
+            }
+            return _bitmap;
+        }
+    }
+}
