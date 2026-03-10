@@ -25,6 +25,21 @@
  */
 
 
+using System.Diagnostics;
+
+namespace WorldMapGenerator
+{
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+             
+        }
+    }
+
+}
+
 //// Testing NoiseGenerator
 
 //using SkiaSharp;
@@ -51,9 +66,6 @@
 //string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, config.OutputFilePath);
 
 //File.WriteAllBytes(path, data.ToArray());
-
-
-
 
 
 /*
