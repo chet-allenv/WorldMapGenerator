@@ -30,8 +30,6 @@
  * resulting in smoother transitions between noise values.
  */
 
-using FastNoiseLite;
-
 namespace WorldMapGenerator
 {
     public class NoiseGenerator
