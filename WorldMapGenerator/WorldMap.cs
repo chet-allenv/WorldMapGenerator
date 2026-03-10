@@ -20,3 +20,69 @@
  *      - TerrainType GetTerrainAt(int x, int y) - a method that returns the terrain type at the specified coordinates.
  *      - float GetHeightAt(int x, int y) - a method that returns the raw noise value (height) at the specified coordinates.
  */
+
+namespace WorldMapGenerator
+{
+    public class WorldMap
+    {
+        // Properties
+        public TerrainType[,] TerrainMap { get; private set; 
+
+        public float[,] HeightValues { get; private set; }
+
+        public int Width { get; }
+        public int Height { get; }
+
+        // Constructor
+        public WorldMap(int width, int height)
+        {
+            Width = width;
+            Height = height;
+            TerrainMap = new TerrainType[width, height];
+            HeightValues = new float[width, height];
+        }
+
+        /*
+         * Generate Method:
+         * Fills both arrays (TerrainMap and HeightValues) using the provided NoiseGenerator and TerrainClassifier.
+         */
+        public void Generate(NoiseGenerator ng, TerrainClassifier tc)
+        {
+            for (int x = 0; x < Width; x++)
+            {
+                for (int y = 0; y < Height; y++)
+                {
+                    // Get the sample of the noise value @ (x,y)
+                    var heightValue = ng.SampleNoise(x, y);
+
+                    HeightValues[x, y] = heightValue
+
+                    // Classify the terrain type based on the noise value and store it in the TerrainMap
+                    TerrainMap[x, y] = tc.Classify(heightValue);
+                }
+            }
+        }
+
+        /*
+         * GetTerrainAt Method:
+         * Returns the terrain type at the specified coordinates.
+         */
+        public TerrainType GetTerrainAt(int x, int y)
+        {
+            if (x < 0 || x >= Width || y < 0 || y >= Height)
+                throw new ArgumentOutOfRangeException("Coordinates are out of bounds of the map.");
+            return TerrainMap[x, y];
+        }
+
+        /*
+         * GetHeightAt Method:
+         * Returns the raw noise value (height) at the specified coordinates.
+         */
+        public float GetHeightAt(int x, int y)
+        {
+            if (x < 0 || x >= Width || y < 0 || y >= Height)
+                throw new ArgumentOutOfRangeException("Coordinates are out of bounds of the map.");
+            return HeightValues[x, y];
+        }
+    }
+}
