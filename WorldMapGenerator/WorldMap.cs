@@ -55,7 +55,7 @@ namespace WorldMapGenerator
                     // Get the sample of the noise value @ (x,y)
                     var heightValue = ng.SampleNoise(x, y);
 
-                    HeightValues[x, y] = heightValue
+                    HeightValues[x, y] = heightValue;
 
                     // Classify the terrain type based on the noise value and store it in the TerrainMap
                     TerrainMap[x, y] = tc.Classify(heightValue);
