@@ -18,7 +18,7 @@ Built with **SkiaSharp** for rendering and **FastNoiseLite** for Simplex noise g
 
 ## ✨ Features
 
-- **Simplex noise** with Fractal Brownian Motion (FBM) for natural-looking terrain
+- **Perlin noise** with Fractal Brownian Motion (FBM) for natural-looking terrain
 - **7 terrain types** — deep ocean, shallow water, beach, grassland, forest, mountain, snow peaks
 - **Island falloff mask** — edges always fade to ocean, producing coherent continents
 - **Elevation shading** — directional light simulation gives mountains visible depth
