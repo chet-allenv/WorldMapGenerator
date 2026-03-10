@@ -8,7 +8,6 @@ Built with **SkiaSharp** for rendering and **FastNoiseLite** for Simplex noise g
 
 ## 🖼️ Example Output
 
-> *(Add your own screenshots here — try a few interesting seeds and drop the PNGs in a `/samples` folder)*
 
 | Seed `12345` | Seed `99999` | Seed `42` |
 |:---:|:---:|:---:|
