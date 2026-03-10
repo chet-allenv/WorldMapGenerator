@@ -2,7 +2,7 @@
 
 A procedural 2D fantasy world map generator written in C#. Give it a seed, get a world.
 
-Built with **SkiaSharp** for rendering and **FastNoiseLite** for Simplex noise generation. Every map is deterministic — the same seed always produces the same result.
+Built with **SkiaSharp** for rendering and **FastNoiseLite** for Perlin noise generation. Every map is deterministic — the same seed always produces the same result.
 
 ---
 
