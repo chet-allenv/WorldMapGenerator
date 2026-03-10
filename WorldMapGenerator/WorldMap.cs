@@ -26,6 +26,8 @@ namespace WorldMapGenerator
     public class WorldMap
     {
         // Properties
+        private readonly MapConfig _config;
+
         public TerrainType[,] TerrainMap { get; private set; }
 
         public float[,] HeightValues { get; private set; }
@@ -34,12 +36,13 @@ namespace WorldMapGenerator
         public int Height { get; }
 
         // Constructor
-        public WorldMap(int width, int height)
+        public WorldMap(MapConfig config)
         {
-            Width = width;
-            Height = height;
-            TerrainMap = new TerrainType[width, height];
-            HeightValues = new float[width, height];
+            _config = config;
+            Width = _config.Width;
+            Height = _config.Height;
+            TerrainMap = new TerrainType[_config.Width, _config.Height];
+            HeightValues = new float[_config.Width, _config.Height];
         }
 
         /*
@@ -52,13 +55,34 @@ namespace WorldMapGenerator
             {
                 for (int y = 0; y < Height; y++)
                 {
+                    // Island falloff Calculation
+                    // Calculate the distance from the center of the map
+                    float centerX = Width / 2f;
+                    float centerY = Height / 2f;
+
+                    float distanceX = x - centerX;
+                    float distanceY = y - centerY;
+
+                    float distanceFromCenter = MathF.Sqrt(distanceX * distanceX + distanceY * distanceY);
+
+                    // Normalize the distance from the center to a range of 0 to 1
+                    float distanceToCorner = MathF.Sqrt(centerX * centerX + centerY * centerY);
+                    float normalizedDistance = distanceFromCenter / distanceToCorner;
+
+                    // Calculate the falloff factor based on the distance from the center and the maximum distance
+                    float falloffFactor = MathF.Pow(normalizedDistance, _config.FallOffStrength);
+
+                    //System.Diagnostics.Debug.WriteLine($"Distance from center: {distanceFromCenter}, Normalized Distance: {normalizedDistance}, Falloff Factor: {falloffFactor}");
+
                     // Get the sample of the noise value @ (x,y)
                     var heightValue = ng.SampleNoise(x, y);
 
-                    HeightValues[x, y] = heightValue;
+                    var adjustedHeightValue = heightValue - falloffFactor;
+
+                    HeightValues[x, y] = adjustedHeightValue;
 
                     // Classify the terrain type based on the noise value and store it in the TerrainMap
-                    TerrainMap[x, y] = tc.Classify(heightValue);
+                    TerrainMap[x, y] = tc.Classify(adjustedHeightValue);
                 }
             }
         }

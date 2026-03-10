@@ -47,13 +47,13 @@ namespace WorldMapGenerator
         public float Frequency = 0.003f;                                // Frequency for noise generation
         public int Octaves = 5;                                         // Number of octaves for noise generation
 
-        public float FalloffStrength = 1.8f;                            // Controls how quickly the terrain falls off towards the edges of the map
+        public float FallOffStrength = 3.0f;                            // Controls how quickly the terrain falls off towards the edges of the map
         public string OutputFilePath = @"..\..\..\output\worldmap.png"; // Output file path for the generated map
 
         // Terrain classification thresholds
         // Noise returns values in the range of -1.0 to 1.0
 
-        public float DeepOceanMax = -0.7f;     // -1 to -0.5
+        public float DeepOceanMax = -0.3f;     // -1 to -0.5
         public float ShallowWaterMax = 0f;   // -0.5 to 0
         public float BeachMax = 0.1f;           // 0 to 0.1
         public float GrasslandMax = 0.3f;    // 0.1 to 0.3

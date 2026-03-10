@@ -34,9 +34,9 @@ namespace WorldMapGenerator
     {
         static void Main(string[] args)
         {
-            var config = new MapConfig { Seed = 21 };
+            var config = new MapConfig { Seed = 67 };
             var noise = new NoiseGenerator(config);
-            var map = new WorldMap(config.Width, config.Height);
+            var map = new WorldMap(config);
             var tc = new TerrainClassifier(config);
             map.Generate(noise, tc);
             var palette = new ColorPalette();
