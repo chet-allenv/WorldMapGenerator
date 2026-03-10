@@ -34,7 +34,19 @@ namespace WorldMapGenerator
     {
         static void Main(string[] args)
         {
-            var config = new MapConfig { Seed = 1829 };
+            int argSeed = 0;
+            bool isArgSeed = args.Length > 0 && int.TryParse(args[0], out argSeed);
+
+            int seedToUse = isArgSeed ? argSeed : new Random().Next();
+
+            if (isArgSeed) {
+                Console.WriteLine($"Using seed from command line argument: {seedToUse}");
+            } else {
+                Console.WriteLine("No valid seed provided in command line arguments. Using random seed.");
+                Console.WriteLine($"Generated random seed: {seedToUse}");
+            }
+
+            var config = new MapConfig { Seed = seedToUse };
             var noise = new NoiseGenerator(config);
             var map = new WorldMap(config);
             var tc = new TerrainClassifier(config);
