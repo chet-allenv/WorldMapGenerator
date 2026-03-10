@@ -26,7 +26,7 @@ namespace WorldMapGenerator
     public class WorldMap
     {
         // Properties
-        public TerrainType[,] TerrainMap { get; private set; 
+        public TerrainType[,] TerrainMap { get; private set; }
 
         public float[,] HeightValues { get; private set; }
 
