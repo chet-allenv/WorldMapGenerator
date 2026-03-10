@@ -17,17 +17,7 @@
  *          // or can look up through sorted thresholds. For simplicity and readability, if-else statements are likely sufficient given the small number of terrain types.
  *          
  *          
- *      What ranges should we approach for each terrain type? This is somewhat subjective and can be adjusted based on the desired look of the map. Here's a common approach:
- *      
- *      All Terrain Types:
- *  
- *      DeepOcean: 0.0 to 0.2
- *      ShallowWater: 0.2 to 0.4
- *      Beach: 0.4 to 0.5
- *      Grassland: 0.5 to 0.7
- *      Forest: 0.7 to 0.85
- *      Mountain: 0.85 to 0.95
- *      Snow: 0.95 to 1.0
+ *      What ranges should we approach for each terrain type? This is somewhat subjective and can be adjusted based on the desired look of the map.
  *      
  *      These thresholds are stored in the MapConfig class, 
  *      allowing for easy adjustment without changing the code in TerrainClassifier.cs. 
@@ -51,15 +41,17 @@ namespace WorldMapGenerator
          * Classify Method:
          * Takes a float noise value and returns the corresponding TerrainType based on the thresholds defined in MapConfig.
          * Checks the heightValue against the thresholds in MapConfig in a specific order to determine the correct TerrainType.
-         * 
-         *      DeepOcean: 0.0 to 0.2
-         *      ShallowWater: 0.2 to 0.4
-         *      Beach: 0.4 to 0.5
-         *      Grassland: 0.5 to 0.7
-         *      Forest: 0.7 to 0.85
-         *      Mountain: 0.85 to 0.95
-         *      Snow: 0.95 to 1.0
-         */
+         *      (FROM MAPCONFIG)
+         *      
+         *      public float DeepOceanMax = -.5f;     // -1 to -0.5
+                public float ShallowWaterMax = 0f;   // -0.5 to 0
+                public float BeachMax = 0.1f;        // 0 to 0.1
+                public float GrasslandMax = 0.3f;    // 0.1 to 0.3
+                public float ForestMax = 0.5f;       // 0.3 to 0.5
+                public float MountainMax = 0.7f;     // 0.5 to 0.7
+                                                     // Anything higher than MountainMax is considered Snow.
+        *
+        */
         public TerrainType Classify(float heightValue)
         {
             if (heightValue < _mapConfig.DeepOceanMax)

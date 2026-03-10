@@ -51,12 +51,14 @@ namespace WorldMapGenerator
         public string OutputFilePath = @"..\..\..\output\worldmap.png"; // Output file path for the generated map
 
         // Terrain classification thresholds
-        public float DeepOceanMax = 0.2f;     // 0.0 to 0.2
-        public float ShallowWaterMax = 0.4f;   // 0.2 to 0.4
-        public float BeachMax = 0.5f;          // 0.4 to 0.5
-        public float GrasslandMax = 0.7f;      // 0.5 to 0.7
-        public float ForestMax = 0.85f;        // 0.7 to 0.85
-        public float MountainMax = 0.95f;      // 0.85 to 0.95
-        public float SnowMax = 1.0f;          // 0.95 to 1.0
+        // Noise returns values in the range of -1.0 to 1.0
+
+        public float DeepOceanMax = -.5f;     // -1 to -0.5
+        public float ShallowWaterMax = 0f;   // -0.5 to 0
+        public float BeachMax = 0.1f;        // 0 to 0.1
+        public float GrasslandMax = 0.3f;    // 0.1 to 0.3
+        public float ForestMax = 0.5f;       // 0.3 to 0.5
+        public float MountainMax = 0.7f;     // 0.5 to 0.7
+                                             // Anything higher than MountainMax is considered Snow.
     }
 }
