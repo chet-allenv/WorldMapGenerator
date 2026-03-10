@@ -55,7 +55,7 @@ The output PNG will be saved to `worldmap.png` in the project root. The seed use
 
 ```
 Generating map with seed: 12345
-Map saved to output.png
+Map saved to worldmap.png
 ```
 
 ---
