@@ -34,8 +34,10 @@ namespace WorldMapGenerator
 {
     public class NoiseGenerator
     {
+        // The instance of the FastNoiseLite noise generator that this class wraps around.
         private FastNoiseLite _noise;
 
+        // Constructor that takes in a MapConfig object to initialize the noise generator.
         public NoiseGenerator(MapConfig config)
         {
             _noise = new FastNoiseLite();
@@ -48,6 +50,11 @@ namespace WorldMapGenerator
             _noise.SetFractalOctaves(config.Octaves);
         }
 
+
+        /*
+         * SampleNoise Method:
+         * Leverages the FastNoiseLite instance to sample noise values at given coordinates (x,y).
+         */
         public float SampleNoise(int x, int y)
         {
             // Sample the noise at a given point (x,y)
