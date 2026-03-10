@@ -28,3 +28,4 @@
  * frequency and amplitude of the noise, you can create different types of terrain, such as mountains, plains, or oceans.
  * Additionally, an improvement to the noise algorithm uses a new interpolant function f(x) = 6x^5 - 15x^4 + 10x^3, which has zero first and second derivatives at the endpoints,
  * resulting in smoother transitions between noise values.
+ */
