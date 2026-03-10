@@ -34,24 +34,24 @@ namespace WorldMapGenerator
 {
     public class NoiseGenerator
     {
-        private FastNoiseLite noise;
+        private FastNoiseLite _noise;
 
         public NoiseGenerator(MapConfig config)
         {
-            noise = new FastNoiseLite();
+            _noise = new FastNoiseLite();
 
-            noise.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
-            noise.SetFractalType(FastNoiseLite.FractalType.FBm);
+            _noise.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
+            _noise.SetFractalType(FastNoiseLite.FractalType.FBm);
 
-            noise.SetSeed(config.Seed);
-            noise.SetFrequency(config.Frequency);
-            noise.SetFractalOctaves(config.Octaves);
+            _noise.SetSeed(config.Seed);
+            _noise.SetFrequency(config.Frequency);
+            _noise.SetFractalOctaves(config.Octaves);
         }
 
         public float SampleNoise(int x, int y)
         {
             // Sample the noise at a given point (x,y)
-            noise.GetNoise(x, y, out float noiseValue);
+            _noise.GetNoise(x, y, out float noiseValue);
             return noiseValue;
         }
     }
