@@ -2,17 +2,16 @@
 
 A procedural 2D fantasy world map generator written in C#. Give it a seed, get a world.
 
-Built with **SkiaSharp** for rendering and **FastNoiseLite** for Simplex noise generation. Every map is deterministic — the same seed always produces the same result.
+Built with **SkiaSharp** for rendering and **FastNoiseLite** for Perlin noise generation. Every map is deterministic — the same seed always produces the same result.
 
 ---
 
 ## 🖼️ Example Output
 
-> *(Add your own screenshots here — try a few interesting seeds and drop the PNGs in a `/samples` folder)*
 
 | Seed `12345` | Seed `99999` | Seed `42` |
 |:---:|:---:|:---:|
-| ![Map Preview](WorldMapGenerator/samples/12345.png) | *![Map Preview](WorldMapGenerator/samples/99999.png)  | ![Map Preview](WorldMapGenerator/samples/42.png)  |
+| ![Map Preview](WorldMapGenerator/samples/12345.png) | ![Map Preview](WorldMapGenerator/samples/99999.png)  | ![Map Preview](WorldMapGenerator/samples/42.png)  |
 
 ---
 
@@ -52,11 +51,11 @@ dotnet run
 dotnet run -- 12345
 ```
 
-The output PNG will be saved to `output.png` in the project root. The seed used is always printed to the console.
+The output PNG will be saved to `worldmap.png` in the project root. The seed used is always printed to the console.
 
 ```
 Generating map with seed: 12345
-Map saved to output.png
+Map saved to worldmap.png
 ```
 
 ---
@@ -99,8 +98,8 @@ All tuneable values live in `MapConfig.cs`. No magic numbers anywhere else.
 | `Seed` | `1337` | Noise seed — same seed = same map |
 | `Frequency` | `0.003f` | Zoom level — lower = broader, smoother features |
 | `Octaves` | `5` | Noise layers — more = finer terrain detail |
-| `FalloffStrength` | `1.8f` | Island shape — higher = more ocean, smaller landmass |
-| `OutputPath` | `"output.png"` | Where the final image is saved |
+| `FalloffStrength` | `3.0f` | Island shape — higher = more ocean, smaller landmass |
+| `OutputPath` | `"..\..\..\output\worldmap.png"` | Where the final image is saved |
 
 ---
 
@@ -108,7 +107,7 @@ All tuneable values live in `MapConfig.cs`. No magic numbers anywhere else.
 
 ### Noise → Terrain
 
-Every pixel's terrain is determined by a single float sampled from a Simplex noise function at its (x, y) coordinate. That float is passed through a threshold check to produce a `TerrainType`:
+Every pixel's terrain is determined by a single float sampled from a Perlin noise function at its (x, y) coordinate. That float is passed through a threshold check to produce a `TerrainType`:
 
 ```
 -1.0  ──────────────────────────────────────────  1.0
