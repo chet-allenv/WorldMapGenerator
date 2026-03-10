@@ -25,28 +25,32 @@
  */
 
 
-// Testing NoiseGenerator
+//// Testing NoiseGenerator
 
-using SkiaSharp;
+//using SkiaSharp;
 
-var bitmap = new SKBitmap(512, 512);
+//var bitmap = new SKBitmap(512, 512);
 
-var noiseGen = new WorldMapGenerator.NoiseGenerator(new WorldMapGenerator.MapConfig { Seed = 1337, Frequency = 0.01f, Octaves = 1 });
+//var config = new WorldMapGenerator.MapConfig { Seed = 10412, Frequency = 0.01f, Octaves = 1 };
 
-for (int x = 0; x < bitmap.Width; x++)
-{
-    for (int y = 0; y < bitmap.Height; y++)
-    {
-        var noiseValue = noiseGen.SampleNoise(x, y);
-        // Map the noise value to a color (for testing, we can just use a grayscale mapping)
-        byte colorValue = (byte)((noiseValue + 1) / 2 * 255); // Normalize noise value to [0,255]
-        bitmap.SetPixel(x, y, new SKColor(colorValue, colorValue, colorValue));
-    }
-}
+//var noiseGen = new WorldMapGenerator.NoiseGenerator(config);
 
-var image = SKImage.FromBitmap(bitmap);
+//for (int x = 0; x < bitmap.Width; x++)
+//{
+//    for (int y = 0; y < bitmap.Height; y++)
+//    {
+//        var noiseValue = noiseGen.SampleNoise(x, y);
+//        // Map the noise value to a color (for testing, we can just use a grayscale mapping)
+//        byte colorValue = (byte)((noiseValue + 1) / 2 * 255); // Normalize noise value to [0,255]
+//        bitmap.SetPixel(x, y, new SKColor(colorValue, colorValue, colorValue));
+//    }
+//}
 
-image.Encode(SKEncodedImageFormat.Png, 100).SaveTo("noise_test.png");
+//var data = bitmap.Encode(SKEncodedImageFormat.Png, 100);
+
+//string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, config.OutputFilePath);
+
+//File.WriteAllBytes(path, data.ToArray());
 
 
 
