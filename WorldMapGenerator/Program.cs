@@ -54,16 +54,18 @@ namespace WorldMapGenerator
 
             // River Generation (Stretch Goal)
             var riverGen = new RiverGenerator(map, config.Seed);
-            var rivers = new List<(int x, int y)>();
-            foreach (var (x, y) in rivers)
+            var rivers = new List<List<(int x, int y)>>();
+            for (int i = 0; i < config.RiverCount; i++)
             {
-                rivers.Add(riverGen.GenerateRivers(config.RiverCount));
+                rivers.Add(riverGen.GenerateRivers());
             }
 
             var palette = new ColorPalette();
             var renderer = new MapRenderer(config);
             var bitmap = renderer.Render(map, palette);
             renderer.ApplyElevationShading(bitmap, map);
+
+            renderer.DrawRivers(bitmap, rivers, palette);
 
             using var data = bitmap.Encode(SKEncodedImageFormat.Png, 100);
             string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, config.OutputFilePath);
