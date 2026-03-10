@@ -16,3 +16,15 @@
  *		- float SampleNoise(int x, int y) - method to sample noise value at given coordinates.
  *		- private: FastNoiseLite noise - the instance of the FastNoiseLite noise generator.
  */
+
+/* 
+ * Understanding Perlin Noise: Information taken from watching https://www.youtube.com/watch?v=DxUY42r_6Cg
+ * 
+ * Perlin noise is a method of generating smooth, natural noise. It is not as scattered and crazy as white noise.
+ * it is also a close relative of value noise. Essentially, Perlin noise is a type of gradient noise that uses bilinear interpolation to 
+ * create smooth transitions between random values. It uses the dot product of gradient vectors and distance vectors to calculate the noise value at a given point.
+ * 
+ * Perlin's algorithm is useful in terrain generation because it allows for natural looking landscapes with hills, valleys, and other features. By adjusting the 
+ * frequency and amplitude of the noise, you can create different types of terrain, such as mountains, plains, or oceans.
+ * Additionally, an improvement to the noise algorithm uses a new interpolant function f(x) = 6x^5 - 15x^4 + 10x^3, which has zero first and second derivatives at the endpoints,
+ * resulting in smoother transitions between noise values.
