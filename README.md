@@ -99,8 +99,8 @@ All tuneable values live in `MapConfig.cs`. No magic numbers anywhere else.
 | `Seed` | `1337` | Noise seed — same seed = same map |
 | `Frequency` | `0.003f` | Zoom level — lower = broader, smoother features |
 | `Octaves` | `5` | Noise layers — more = finer terrain detail |
-| `FalloffStrength` | `1.8f` | Island shape — higher = more ocean, smaller landmass |
-| `OutputPath` | `"output.png"` | Where the final image is saved |
+| `FalloffStrength` | `3.0f` | Island shape — higher = more ocean, smaller landmass |
+| `OutputPath` | `"..\..\..\output\worldmap.png"` | Where the final image is saved |
 
 ---
 
