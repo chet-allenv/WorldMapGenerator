@@ -19,6 +19,10 @@
  *      - void Generate(NoiseGenerator noiseGen, TerrainClassifier classifier) - a method that generates the terrain map using the provided NoiseGenerator and TerrainClassifier.
  *      - TerrainType GetTerrainAt(int x, int y) - a method that returns the terrain type at the specified coordinates.
  *      - float GetHeightAt(int x, int y) - a method that returns the raw noise value (height) at the specified coordinates.
+ *      
+ *      Stretch Goal Members:
+ *      - bool[,] IsRiver() - a 2D array that indicates whether each point on the map is part of a river or not.
+ *      - void GenerateRivers(int count) - a method that generates river paths across the map.
  */
 
 namespace WorldMapGenerator
@@ -107,6 +111,28 @@ namespace WorldMapGenerator
             if (x < 0 || x >= Width || y < 0 || y >= Height)
                 throw new ArgumentOutOfRangeException("Coordinates are out of bounds of the map.");
             return HeightValues[x, y];
+        }
+
+        /*
+         * Stretch Goal: River Generation
+         * This method implements a river generation algorithm that creates river paths across the map.
+         * Because my current implementation of the world map is based on noise values, I can use the height values to determine where rivers should flow.
+         * Additionally, because the generated picture is 1024x1024, using A* or Dijkstra's pathfinding algorithms are costly.
+         * Best approach here is using a greedy decent algorithm that starts at a high elevation point and moves to the lowest adjacent point until it reaches sea level, marking the path as a river.
+         */
+        public void GenerateRivers(int count)
+        {
+            //
+        }
+
+        /*
+         * FindRiverSource Method:
+         * This method finds a suitable starting point for a river, which is typically a high elevation point in the terrain.
+         * It would scan through the HeightValues array to find points that are above a certain threshold and return their coordinates as potential river sources.
+         */
+        private int FindRiverSource()
+        {
+            // Implementation to find a suitable river source based on height values
         }
     }
 }
