@@ -52,7 +52,7 @@ dotnet run
 dotnet run -- 12345
 ```
 
-The output PNG will be saved to `output.png` in the project root. The seed used is always printed to the console.
+The output PNG will be saved to `worldmap.png` in the project root. The seed used is always printed to the console.
 
 ```
 Generating map with seed: 12345
