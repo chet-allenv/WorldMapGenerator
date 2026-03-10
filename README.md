@@ -11,7 +11,7 @@ Built with **SkiaSharp** for rendering and **FastNoiseLite** for Perlin noise ge
 
 | Seed `12345` | Seed `99999` | Seed `42` |
 |:---:|:---:|:---:|
-| ![Map Preview](WorldMapGenerator/samples/12345.png) | *![Map Preview](WorldMapGenerator/samples/99999.png)  | ![Map Preview](WorldMapGenerator/samples/42.png)  |
+| ![Map Preview](WorldMapGenerator/samples/12345.png) | ![Map Preview](WorldMapGenerator/samples/99999.png)  | ![Map Preview](WorldMapGenerator/samples/42.png)  |
 
 ---
 
