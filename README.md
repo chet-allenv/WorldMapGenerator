@@ -108,7 +108,7 @@ All tuneable values live in `MapConfig.cs`. No magic numbers anywhere else.
 
 ### Noise → Terrain
 
-Every pixel's terrain is determined by a single float sampled from a Simplex noise function at its (x, y) coordinate. That float is passed through a threshold check to produce a `TerrainType`:
+Every pixel's terrain is determined by a single float sampled from a Perlin noise function at its (x, y) coordinate. That float is passed through a threshold check to produce a `TerrainType`:
 
 ```
 -1.0  ──────────────────────────────────────────  1.0
