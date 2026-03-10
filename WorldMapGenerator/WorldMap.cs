@@ -122,7 +122,43 @@ namespace WorldMapGenerator
          */
         public void GenerateRivers(int count)
         {
-            //
+            // Find best starting point
+            (int x, int y) riverSource = FindRiverSource();
+
+            int cx = riverSource.x;
+            int cy = riverSource.y;
+
+            // Create river path
+            var path = new List<(int x, int y)>();
+            var visited = new HashSet<(int, int)>();
+
+            while (true)
+            {
+                path.Add((cx, cy));
+                visited.Add((cx, cy));
+
+                var terrain = GetTerrainAt(cx, cy);
+
+                if (terrain == TerrainType.DeepOcean || terrain == TerrainType.ShallowWater)
+                {
+                    // Reached the ocean, river is complete
+                    break;
+                }
+
+                var neighbors = GetAdjacentPoints(cx, cy);
+                (int x, int y) lowestNeighbor = (cx, cy);
+                float bestHeight = float.MaxValue;
+
+                foreach (var (nx, ny) in neighbors)
+                {
+                    float h = GetHeightAt(nx, ny) + (float)(_rng.NextDouble() * 0.01) ;
+                    if (h < bestHeight)
+                    {
+                        lowestNeighbor = (nx, ny);
+                        bestHeight = h;
+                    }
+                }
+            }
         }
 
         /*
@@ -130,9 +166,71 @@ namespace WorldMapGenerator
          * This method finds a suitable starting point for a river, which is typically a high elevation point in the terrain.
          * It would scan through the HeightValues array to find points that are above a certain threshold and return their coordinates as potential river sources.
          */
-        private int FindRiverSource()
+        private (int x, int y) FindRiverSource()
         {
             // Implementation to find a suitable river source based on height values
+            int startX, startY;
+
+            do
+            {
+                startX = new Random().Next(0, Width);
+                startY = new Random().Next(0, Height);
+            } while (GetTerrainAt(startX, startY) != TerrainType.DeepOcean || GetTerrainAt(startX, startY) != TerrainType.ShallowWater);
+
+            int cx = startX;
+            int cy = startY;
+
+            while (true)
+            {
+                var neighbors = GetAdjacentPoints(cx, cy);
+
+                (int x, int y) lowestNeighbor = (cx, cy);
+                float bestHeight = GetHeightAt(cx, cy);
+
+                foreach (var (nx, ny) in neighbors)
+                {
+                    float h = GetHeightAt(nx, ny);
+                    if (GetHeightAt(nx, ny) < lowestNeighbor.x)
+                    {
+                        lowestNeighbor = (nx, ny);
+                        bestHeight = h;
+                    }
+                }
+
+                if (lowestNeighbor == (cx, cy) || bestHeight >= GetHeightAt(cx, cy))
+                {
+                    // No lower neighbor found, this is a local minimum
+                    break;
+                })
+                cx = lowestNeighbor.x;
+                cy = lowestNeighbor.y;
+            }
+
+            return (cx, cy);
+        }
+
+        /*
+         * GetAdjacentPoints Method:
+         * This method returns a list of adjacent points (up, down, left, right, and diagonals) for a given coordinate (x, y) while ensuring that the points are within the bounds of the map.
+         * It would check the coordinates around the given point and return those that are valid and can be considered for river flow.
+         */
+        private List<(int x, int y)> GetAdjacentPoints(int x, int y)
+        {
+            // Implementation to get adjacent points (up, down, left, right) while ensuring they are within the bounds of the map
+            var res = new List<(int x, int y)>();
+
+            int[] dx = { -1, 0, 1, -1, 1, -1, 0, 1 };
+            int[] dy = { -1, -1, -1, 0, 0, 1, 1, 1 };
+
+            for (int i = 0; i < dx.Length; i++)
+            {
+                int newX = x + dx[i];
+                int newY = y + dy[i];
+                if (newX >= 0 && newX < Width && newY >= 0 && newY < Height)
+                {
+                    res.Add((newX, newY));
+                }
+            }
         }
     }
 }
