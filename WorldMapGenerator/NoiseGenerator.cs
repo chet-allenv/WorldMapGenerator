@@ -29,3 +29,30 @@
  * Additionally, an improvement to the noise algorithm uses a new interpolant function f(x) = 6x^5 - 15x^4 + 10x^3, which has zero first and second derivatives at the endpoints,
  * resulting in smoother transitions between noise values.
  */
+
+namespace WorldMapGenerator
+{
+    public class NoiseGenerator
+    {
+        private FastNoiseLite noise;
+
+        public NoiseGenerator(MapConfig config)
+        {
+            noise = new FastNoiseLite();
+
+            noise.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
+            noise.SetFractalType(FastNoiseLite.FractalType.FBm);
+
+            noise.SetSeed(config.Seed);
+            noise.SetFrequency(config.Frequency);
+            noise.SetFractalOctaves(config.Octaves);
+        }
+
+        public float SampleNoise(int x, int y)
+        {
+            // Sample the noise at a given point (x,y)
+            noise.GetNoise(x, y, out float noiseValue);
+            return noiseValue;
+        }
+    }
+}
