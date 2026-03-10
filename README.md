@@ -12,7 +12,7 @@ Built with **SkiaSharp** for rendering and **FastNoiseLite** for Simplex noise g
 
 | Seed `12345` | Seed `99999` | Seed `42` |
 |:---:|:---:|:---:|
-| ![Map Preview](samples/12345.png) | *(screenshot)* | *(screenshot)* |
+| ![Map Preview](WorldMapGenerator/samples/12345.png) | *(screenshot)* | *(screenshot)* |
 
 ---
 
