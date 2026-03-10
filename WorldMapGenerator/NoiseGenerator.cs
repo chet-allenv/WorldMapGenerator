@@ -58,7 +58,7 @@ namespace WorldMapGenerator
         public float SampleNoise(int x, int y)
         {
             // Sample the noise at a given point (x,y)
-            _noise.GetNoise(x, y, out float noiseValue);
+            var noiseValue = _noise.GetNoise(x, y);
             return noiseValue;
         }
     }
