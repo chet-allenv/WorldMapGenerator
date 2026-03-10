@@ -27,10 +27,15 @@ namespace WorldMapGenerator
     public class MapRenderer
     {
         private readonly MapConfig _config;
+        private readonly TerrainClassifier _classifier;
+        
+        private readonly float _shadingIntensity = 0.85f; // Adjust this value to increase or decrease the intensity of the elevation shading effect.
+        private readonly float _lightIntensity = 1.15f; // Adjust this value to increase or decrease the intensity of the light source for elevation shading.
 
         public MapRenderer(MapConfig config)
         {
             _config = config;
+            _classifier = new TerrainClassifier(config);
         }
 
         /*
@@ -51,6 +56,49 @@ namespace WorldMapGenerator
                 }
             }
             return _bitmap;
+        }
+
+        /*
+         * ApplyElevationShading Method:
+         * Method that applies elevation-based shading to the SKBitmap to add depth and visual interest to the map.
+         * 
+         */
+        public void ApplyElevationShading(SKBitmap bitmap, WorldMap map)
+        {
+            for (int x = 0; x < map.Width; x++)
+            {
+                for (int y = 0; y < map.Height; y++)
+                {
+                    if (x - 1 < 0 || y - 1 < 0) continue;
+                    if (x - 1 >= map.Width || y - 1 >= map.Height) continue;
+
+                    var heightOfCurrentPixel = map.GetHeightAt(x, y);
+
+                    //if (_classifier.Classify(heightOfCurrentPixel) == TerrainType.DeepOcean 
+                    //    || _classifier.Classify(heightOfCurrentPixel) == TerrainType.ShallowWater 
+                    //    || _classifier.Classify(heightOfCurrentPixel) == TerrainType.Beach)
+                    //{
+                    //    continue;
+                    //}
+
+                    bool lowerThanNeighbor = heightOfCurrentPixel < map.GetHeightAt(x - 1, y - 1);
+
+                    var pixelColor = bitmap.GetPixel(x, y);
+                    var shadedColor = pixelColor;
+
+                    float factor = lowerThanNeighbor ? _shadingIntensity : _lightIntensity;
+                    float heightDiff = Math.Abs(heightOfCurrentPixel - map.GetHeightAt(x - 1, y - 1));
+                    float strength = Math.Min(heightDiff * 200f, 1f); // scale to [0,1]
+
+                    shadedColor = new SKColor(
+                        (byte)Math.Clamp((int)(pixelColor.Red * (1f + (factor - 1f) * strength)), 0, 255),
+                        (byte)Math.Clamp((int)(pixelColor.Green * (1f + (factor - 1f) * strength)), 0, 255),
+                        (byte)Math.Clamp((int)(pixelColor.Blue * (1f + (factor - 1f) * strength)), 0, 255)
+                    );
+
+                    bitmap.SetPixel(x, y, shadedColor);
+                }
+            }
         }
     }
 }

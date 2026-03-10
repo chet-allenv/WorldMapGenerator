@@ -34,7 +34,7 @@ namespace WorldMapGenerator
     {
         static void Main(string[] args)
         {
-            var config = new MapConfig { Seed = 67 };
+            var config = new MapConfig { Seed = 1829 };
             var noise = new NoiseGenerator(config);
             var map = new WorldMap(config);
             var tc = new TerrainClassifier(config);
@@ -42,6 +42,7 @@ namespace WorldMapGenerator
             var palette = new ColorPalette();
             var renderer = new MapRenderer(config);
             var bitmap = renderer.Render(map, palette);
+            renderer.ApplyElevationShading(bitmap, map);
 
             using var data = bitmap.Encode(SKEncodedImageFormat.Png, 100);
             string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, config.OutputFilePath);
