@@ -51,6 +51,15 @@ namespace WorldMapGenerator
             var map = new WorldMap(config);
             var tc = new TerrainClassifier(config);
             map.Generate(noise, tc);
+
+            // River Generation (Stretch Goal)
+            var riverGen = new RiverGenerator(map, config.Seed);
+            var rivers = new List<(int x, int y)>();
+            foreach (var (x, y) in rivers)
+            {
+                rivers.Add(riverGen.GenerateRivers(config.RiverCount));
+            }
+
             var palette = new ColorPalette();
             var renderer = new MapRenderer(config);
             var bitmap = renderer.Render(map, palette);
