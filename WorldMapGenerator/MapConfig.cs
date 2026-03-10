@@ -53,9 +53,9 @@ namespace WorldMapGenerator
         // Terrain classification thresholds
         // Noise returns values in the range of -1.0 to 1.0
 
-        public float DeepOceanMax = -.5f;     // -1 to -0.5
+        public float DeepOceanMax = -0.7f;     // -1 to -0.5
         public float ShallowWaterMax = 0f;   // -0.5 to 0
-        public float BeachMax = 0.1f;        // 0 to 0.1
+        public float BeachMax = 0.1f;           // 0 to 0.1
         public float GrasslandMax = 0.3f;    // 0.1 to 0.3
         public float ForestMax = 0.5f;       // 0.3 to 0.5
         public float MountainMax = 0.7f;     // 0.5 to 0.7

@@ -25,7 +25,7 @@
  */
 
 
-using System.Diagnostics;
+using SkiaSharp;
 
 namespace WorldMapGenerator
 {
@@ -34,7 +34,18 @@ namespace WorldMapGenerator
     {
         static void Main(string[] args)
         {
-             
+            var config = new MapConfig { Seed = 21 };
+            var noise = new NoiseGenerator(config);
+            var map = new WorldMap(config.Width, config.Height);
+            var tc = new TerrainClassifier(config);
+            map.Generate(noise, tc);
+            var palette = new ColorPalette();
+            var renderer = new MapRenderer(config);
+            var bitmap = renderer.Render(map, palette);
+
+            using var data = bitmap.Encode(SKEncodedImageFormat.Png, 100);
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, config.OutputFilePath);
+            File.WriteAllBytes(path, data.ToArray());
         }
     }
 
