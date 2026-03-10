@@ -50,17 +50,17 @@ namespace WorldMapGenerator
         public float FallOffStrength = 3.0f;                            // Controls how quickly the terrain falls off towards the edges of the map
         public string OutputFilePath = @"..\..\..\output\worldmap.png"; // Output file path for the generated map
 
-        public int RiverCount = 10;                                     // Number of rivers to generate (Stretch Goal)
+        public int RiverZoneCount = 4;                                     // Number of rivers to generate (Stretch Goal)
 
         // Terrain classification thresholds
         // Noise returns values in the range of -1.0 to 1.0
 
-        public float DeepOceanMax = -0.3f;     // -1 to -0.5
-        public float ShallowWaterMax = 0f;   // -0.5 to 0
-        public float BeachMax = 0.1f;           // 0 to 0.1
-        public float GrasslandMax = 0.3f;    // 0.1 to 0.3
-        public float ForestMax = 0.5f;       // 0.3 to 0.5
-        public float MountainMax = 0.7f;     // 0.5 to 0.7
+        public float DeepOceanMax = -0.5f;     // -1 to -0.5
+        public float ShallowWaterMax = -0.3f;   // -0.5 to 0
+        public float BeachMax = -0.2f;           // 0 to 0.1
+        public float GrasslandMax = 0.1f;    // 0.1 to 0.3
+        public float ForestMax = 0.3f;       // 0.3 to 0.5
+        public float MountainMax = 0.6f;     // 0.5 to 0.7
                                              // Anything higher than MountainMax is considered Snow.
     }
 }
