@@ -106,13 +106,30 @@ namespace WorldMapGenerator
          * River Drawing Method (Stretch Goal):
          * Draws river paths on the SKBitmap based on the river data generated in the WorldMap.
          */
-        public void DrawRivers(SKBitmap bitmap, List<List<(int x, int y)>> rivers, ColorPalette palette)
+        public void DrawRivers(SKBitmap bitmap, List<List<(int x, int y)>> riverTiles, ColorPalette palette)
         {
-            foreach (var river in rivers)
+            var riverColor = palette.GetColor(TerrainType.ShallowWater);
+
+            foreach (var river in riverTiles)
             {
-                foreach (var (x, y) in river)
+                int total = river.Count;
+                for (int i = 0; i < total; i++)
                 {
-                    bitmap.SetPixel(x, y, palette.GetColor(TerrainType.ShallowWater));
+                    var (x, y) = river[i];
+
+                    // Rivers widen as they flow toward the mouth:
+                    // upper 33% → radius 1, middle 33% → radius 2, lower 33% → radius 3
+                    float progress = (float)i / total;
+                    int radius = progress < 0.33f ? 1 : progress < 0.67f ? 2 : 3;
+
+                    for (int dx = -radius; dx <= radius; dx++)
+                    for (int dy = -radius; dy <= radius; dy++)
+                    {
+                        if (dx * dx + dy * dy > radius * radius) continue;
+                        int px = Math.Clamp(x + dx, 0, bitmap.Width - 1);
+                        int py = Math.Clamp(y + dy, 0, bitmap.Height - 1);
+                        bitmap.SetPixel(px, py, riverColor);
+                    }
                 }
             }
         }

@@ -52,19 +52,16 @@ namespace WorldMapGenerator
             var tc = new TerrainClassifier(config);
             map.Generate(noise, tc);
 
-            // River Generation (Stretch Goal)
-            var riverGen = new RiverGenerator(map, config.Seed);
-            var rivers = riverGen.GenerateRivers(zoneCount: config.RiverZoneCount);
-            
+            var riverGen = new RiverGenerator(map, config, seedToUse);
+            var rivers = riverGen.GenerateRivers();
 
             var palette = new ColorPalette();
             var renderer = new MapRenderer(config);
             var bitmap = renderer.Render(map, palette);
-            
-
-            renderer.DrawRivers(bitmap, rivers, palette);
-
             renderer.ApplyElevationShading(bitmap, map);
+
+            // Generate and draw rivers
+            renderer.DrawRivers(bitmap, rivers, palette);
 
             using var data = bitmap.Encode(SKEncodedImageFormat.Png, 100);
             string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, config.OutputFilePath);

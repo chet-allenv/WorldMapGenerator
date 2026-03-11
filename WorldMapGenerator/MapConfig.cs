@@ -50,7 +50,12 @@ namespace WorldMapGenerator
         public float FallOffStrength = 3.0f;                            // Controls how quickly the terrain falls off towards the edges of the map
         public string OutputFilePath = @"..\..\..\output\worldmap.png"; // Output file path for the generated map
 
-        public int RiverZoneCount = 4;                                     // Number of rivers to generate (Stretch Goal)
+        public int RiverCount = 8; // Number of main rivers radiating from peak
+
+        // Flow accumulation threshold � lower = more rivers, higher = fewer but more prominent
+        // On a 1024x1024 map, good starting values are between 400 and 1200
+        public int RiverAccumulationThreshold = 400; // Lower = more/longer rivers
+        public int RiverMinLength = 30;  // Discard rivers shorter than this
 
         // Terrain classification thresholds
         // Noise returns values in the range of -1.0 to 1.0
