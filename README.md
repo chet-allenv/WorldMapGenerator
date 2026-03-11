@@ -127,7 +127,7 @@ After base colors are applied, each land pixel is compared to its upper-left nei
 ## 🛣️ Roadmap / Stretch Goals
 
 - [ ] **Biome system** — second moisture noise layer + 2D biome lookup (temperature × moisture)
-- [x] **Rivers** — downhill flow with Perlin noise-influenced meanders, variable width, and Catmull-Rom spline smoothing *(developed with [Claude](https://claude.ai))*
+- [x] **Rivers** — downhill flow with Perlin noise-influenced meanders, variable width, and Catmull-Rom spline smoothing *(developed with assistance from [Claude](https://claude.ai))*
 - [ ] **Named regions** — flood-fill landmass detection + procedural fantasy name generation
 - [ ] **Animated export** — GIF showing map built up layer by layer
 
